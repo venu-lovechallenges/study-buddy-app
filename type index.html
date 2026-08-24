@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Study Buddy</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    button { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>📚 Study Buddy for O/L</h1>
+    <p id="status">Loading...</p>
+    <button onclick="checkServer()">Check Server</button>
+  </div>
+
+  <script>
+    async function checkServer() {
+      const res = await fetch('http://localhost:3001/api/health');
+      const data = await res.json();
+      document.getElementById('status').innerText = data.status;
+    }
+    checkServer();
+  </script>
+</body>
+</html>
